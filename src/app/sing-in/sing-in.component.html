@@ -1,1 +1,13 @@
-<p>sing-in works!</p>
+<div class="container mt-5">
+  <h2 class="d-flex justify-content-center">Welcome to Pack N Pay online</h2>
+  <hr>
+  <div class="container">
+    <div class="alert alert-warning" *ngIf='invelidInput'>{{errorMessage}}</div>
+
+    <div>
+      Username: <input type="text" name="username" [(ngModel)]="username">
+      Password: <input type="password" name="password" [(ngModel)]="password">
+      <button (click)="handelLogin()" class="btn btn-success">Login</button>
+    </div>
+  </div>
+</div>

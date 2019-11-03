@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HardcodedAuthenticationServiceService } from '../service/hardcoded-authentication-service.service';
 
 @Component({
   selector: 'app-sing-in',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingInComponent implements OnInit {
 
-  constructor() { }
+  username: string = 'Khumalo@gmail.com';
+  password: string = '';
+  errorMessage: string = 'Invelid Cradentials';
+  invelidInput: boolean = false;
+
+  constructor(private router: Router,
+    private hardcodedAuthenticationService: HardcodedAuthenticationServiceService) { }
 
   ngOnInit() {
   }
+
+  handelLogin(){
+      if(this.hardcodedAuthenticationService.authenticate(this.username, this.password)){
+
+        this.router.navigate(['register',this.username]);
+        this.invelidInput = false;
+
+      }else{
+        this.invelidInput = true;
+      }
+    }
 
 }
